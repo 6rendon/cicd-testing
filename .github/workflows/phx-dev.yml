@@ -22,3 +22,10 @@ jobs:
     steps:
       - name: Run tests
         run: echo "${{ secrets.secret-token }}"
+      - run: echo "NPM_TOKEN=${{ secrets.secret-token }}" >> $GITHUB_ENV
+  foo:
+    name: foo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: env
