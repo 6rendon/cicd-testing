@@ -2,10 +2,6 @@ name: Flow A
 
 on:
   workflow_call:
-    inputs:
-      # build-args:
-      #   required: true
-      #   type: string
     secrets:
       secret-token:
         required: true
