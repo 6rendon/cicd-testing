@@ -8,11 +8,10 @@ on:
         type: string
 
 jobs:
-  build:
+  print_b:
     runs-on: ubuntu-latest
     steps:
       - name: Print B
         run: |
           echo ${{ inputs.variable_b }}
           echo "${{ inputs.variable_b }}"
-          env

@@ -8,12 +8,12 @@ on:
         type: string
 
 jobs:
-  test:
+  pass_to_b:
     name: test
     uses: 6rendon/cicd-testing/.github/workflows/flow_b.yml@main
     with:
-      variable_b: ${{ github.event.inputs.variable_a }}
-  print:
+      variable_b: ${{ inputs.variable_a }}
+  print_a:
     name: Print
     runs-on: ubuntu-latest
     steps:
