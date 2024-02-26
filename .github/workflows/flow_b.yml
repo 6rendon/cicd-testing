@@ -20,7 +20,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ env.REGISTRY }}/${{ inputs.repo_name }}
+            ${{ env.REGISTRY }}/testing
           # generate Docker tags
           tags: | # in order: commit sha, latest
             type=sha,enable=true,prefix=sha-,format=short
