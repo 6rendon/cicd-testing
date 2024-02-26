@@ -13,4 +13,6 @@ jobs:
     name: Init
     uses: 6rendon/cicd-testing/.github/workflows/phx-dev.yml@main
     with:
-      build-args: 'test=BRENDON, foo=BAR'
+      build-args: |
+        test=BRENDON
+        foo=BAR
