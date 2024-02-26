@@ -41,7 +41,7 @@ jobs:
         with:
           builder: ${{ steps.buildx.outputs.name }}
           load: false
-          push: true
+          push: false
           build-args: ${{ inputs.build-args }}
           file: Dockerfile
           context: .
