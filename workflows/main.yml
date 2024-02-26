@@ -1,0 +1,11 @@
+name: testing
+
+on:
+  push:
+
+jobs:
+  init:
+    name: Init
+    uses: 6rendon/cicd-testing/.github/workflows/flow_a.yml@main
+    with:
+      variable_a: example

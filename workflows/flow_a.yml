@@ -1,0 +1,15 @@
+name: Flow A
+
+on:
+  workflow_dispatch:
+    inputs:
+      variable_a:
+        description: 'example var'
+        required: true
+
+jobs:
+  test:
+    name: test
+    uses: 6rendon/cicd-testing/.github/workflows/flow_b.yml@main
+    with:
+      variable_b: ${{ github.event.inputs.variable_a }}
