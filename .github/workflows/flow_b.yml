@@ -26,7 +26,7 @@ jobs:
             type=sha,enable=true,prefix=sha-,format=short
             type=raw,value=latest,enable=true
         env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REGISTRY: brendon
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
