@@ -1,0 +1,24 @@
+name: Flow A
+
+on:
+  workflow_call:
+    inputs:
+      build-args:
+        required: true
+        type: string
+
+jobs:
+  print_a:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print A
+        run: |
+          echo ${{ inputs.build-args }}
+          echo "${{ inputs.build-args }}"
+  build:
+    name: test
+    needs: [print_a]
+    uses: 6rendon/cicd-testing/.github/workflows/flow_b.yml@main
+    with:
+      build-args: ${{ inputs.build-args }}

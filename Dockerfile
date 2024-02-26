@@ -1,2 +1,5 @@
 FROM nginx:latest
-ENV AUTHOR="Tak"
+ARG test=
+ARG foo=
+ENV EXAMPLE=$test
+ENV OKAY=$foo

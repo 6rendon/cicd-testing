@@ -6,6 +6,6 @@ on:
 jobs:
   init:
     name: Init
-    uses: 6rendon/cicd-testing/.github/workflows/flow_a.yml@main
+    uses: 6rendon/cicd-testing/.github/workflows/phx-dev.yml@main
     with:
-      variable_a: 'example'
+      build-args: 'test=BRENDON,foo=BAR'

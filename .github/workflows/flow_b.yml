@@ -3,15 +3,44 @@ name: Flow B
 on:
   workflow_call:
     inputs:
-      variable_b:
+      build-args:
         required: true
         type: string
 
 jobs:
-  print_b:
+  build-push:
+    name: Build and Push Image
     runs-on: ubuntu-latest
+
     steps:
-      - name: Print B
-        run: |
-          echo ${{ inputs.variable_b }}
-          echo "${{ inputs.variable_b }}"
+      - uses: actions/checkout@v2
+      - name: Prepare Image Tags
+        uses: docker/metadata-action@v4
+        id: meta
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ${{ env.REGISTRY }}/${{ inputs.repo_name }}
+          # generate Docker tags
+          tags: | # in order: commit sha, latest
+            type=sha,enable=true,prefix=sha-,format=short
+            type=raw,value=latest,enable=true
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build Image and Push Image
+        uses: docker/build-push-action@v3
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          load: false
+          push: true
+          build-args: ${{ inputs.build-args }}
+          file: Dockerfile
+          context: .
+          tags: ${{ steps.meta.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha
