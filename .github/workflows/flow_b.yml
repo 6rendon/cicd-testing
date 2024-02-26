@@ -7,6 +7,10 @@ on:
         required: true
         type: string
 
+permissions:
+  id-token: write
+  contents: read
+  
 jobs:
   build-push:
     name: Build and Push Image
@@ -20,13 +24,13 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ env.REGISTRY }}/testing
+            ${{ env.REGISTRY }}/cicd-testing
           # generate Docker tags
           tags: | # in order: commit sha, latest
             type=sha,enable=true,prefix=sha-,format=short
             type=raw,value=latest,enable=true
         env:
-          REGISTRY: brendon
+          REGISTRY: 6rendon
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
