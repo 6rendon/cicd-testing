@@ -11,24 +11,19 @@ on:
         required: true
 
 jobs:
-  # build:
-  #   name: test
-  #   uses: 6rendon/cicd-testing/.github/workflows/flow_b.yml@main
-  #   with:
-  #     build-args: ${{ inputs.build-args }}
   test:
     name: test
     runs-on: ubuntu-latest
     steps:
       - name: Run tests
-        run: echo "$NPM_TOKEN_ENV"
+        run: echo "NPM_TOKEN=${NPM_TOKEN_ENV}" >> $GITHUB_ENV
         env: 
           NPM_TOKEN_ENV: ${{ secrets.secret-token }}
-      - run: echo "NPM_TOKEN=${NPM_TOKEN_ENV}" >> $GITHUB_ENV
-  foo:
-    name: foo
+  build:
     needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run tests
-        run: env
+    name: build
+    uses: 6rendon/cicd-testing/.github/workflows/flow_b.yml@main
+    with:
+      build-args: |
+        foo=BAR
+        test=$NPM_TOKEN
