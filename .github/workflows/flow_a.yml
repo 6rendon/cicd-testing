@@ -4,7 +4,6 @@ on:
   workflow_call:
     inputs:
       variable_a:
-        description: 'example var'
         required: true
         type: string
 
@@ -14,3 +13,11 @@ jobs:
     uses: 6rendon/cicd-testing/.github/workflows/flow_b.yml@main
     with:
       variable_b: ${{ github.event.inputs.variable_a }}
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print A
+        run: |
+          echo ${{ inputs.variable_a }}
+          echo "${{ inputs.variable_a }}"

@@ -8,4 +8,4 @@ jobs:
     name: Init
     uses: 6rendon/cicd-testing/.github/workflows/flow_a.yml@main
     with:
-      variable_a: example
+      variable_a: 'example'

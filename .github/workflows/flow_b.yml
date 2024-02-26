@@ -4,7 +4,6 @@ on:
   workflow_call:
     inputs:
       variable_b:
-        description: 'example var'
         required: true
         type: string
 
@@ -12,7 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: ci
+      - name: Print B
         run: |
+          echo ${{ inputs.variable_b }}
           echo "${{ inputs.variable_b }}"
           env
