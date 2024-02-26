@@ -1,11 +1,12 @@
 name: Flow A
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       variable_a:
         description: 'example var'
         required: true
+        type: string
 
 jobs:
   test:
