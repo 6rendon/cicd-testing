@@ -6,6 +6,9 @@ on:
       build-args:
         required: true
         type: string
+    secrets:
+      secret-token:
+        required: true
 
 jobs:
   build:
@@ -13,3 +16,9 @@ jobs:
     uses: 6rendon/cicd-testing/.github/workflows/flow_b.yml@main
     with:
       build-args: ${{ inputs.build-args }}
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: echo "${{ secrets.secret-token }}"

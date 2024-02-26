@@ -17,4 +17,4 @@ jobs:
         test=BRENDON
         foo=${{ secrets.SECRET_TOKEN }}
     secrets:
-      SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
+      secret-token: ${{ secrets.SECRET_TOKEN }}
