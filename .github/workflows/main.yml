@@ -15,4 +15,6 @@ jobs:
     with:
       build-args: |
         test=BRENDON
-        foo=BAR
+        foo=${{ secrets.SECRET_TOKEN }}
+    secrets:
+      SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
