@@ -19,11 +19,11 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
-    env: 
-      NPM_TOKEN_ENV: ${{ secrets.secret-token }}
     steps:
       - name: Run tests
-        run: echo "${{ secrets.secret-token }}"
+        run: echo "$NPM_TOKEN_ENV"
+        env: 
+          NPM_TOKEN_ENV: ${{ secrets.secret-token }}
       - run: echo "NPM_TOKEN=${NPM_TOKEN_ENV}" >> $GITHUB_ENV
   foo:
     name: foo
